@@ -11,10 +11,7 @@ class ProductManager {
 
   //Agregara un producto al array vacio de productos inicial.
   addProduct(title, description, price, thumbnail, code, stock) {
-
-    
-
-   //Generar id incremental
+    //Generar id incremental
     const idProducto = this.products.length + 1;
 
     //Propiedades del producto
@@ -32,32 +29,28 @@ class ProductManager {
   }
 
   //Devolver el array products con todos los productos creados hasta ese momento.
-  getProducts(){
+  getProducts() {
     return this.products;
   }
 
   //Validara el producto con el id.
-  getProductById() {
-  /*
-    const productAdd = this.products.find((producto) => producto.id === producto.id);
-
-    if (!productAdd) {
-      console.log("Este producto no existe");
+  getProductById(id) {
+    if (!this.products.find((producto) => producto.id === id)) {
+      console.log("not found");
     } else {
-    console.error("Estre producto con este codigo: " + code + " YA existe")
+      console.log("si existe");
     }
-    */
-
-    return
-  
   }
 }
 
-
 const productos = new ProductManager();
 
-productos.addProduct("Bicicleta", "Scott doble suspension", 2500000, "No tiene", 1, 520);
-productos.addProduct("Bicicleta", "Treck Rin 29", 1500000, "No tiene", 2, 20);
-productos.addProduct("Bicicleta", "Treck Rin 29", 1500000, "No tiene", 2, 20);
+productos.addProduct("Bicicleta", "Scott doble suspension", 2500000, "No tiene", "abc", 520);
+productos.addProduct("Bicicleta", "Treck Rin 29", 1500000, "No tiene", "abc4", 20);
+productos.addProduct("Bicicleta", "Treck Rin 29", 1500000, "No tiene", "abcd", 20);
+productos.addProduct("Bicicleta", "Treck Rin 29", 1500000, "No tiene", "abcd", 20);
+
 
 console.log(productos.getProducts());
+
+productos.getProductById(5)
