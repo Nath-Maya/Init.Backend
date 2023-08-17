@@ -28,29 +28,32 @@ class ProductManager {
     this.products.push(producto);
   }
 
-  //Devolver el array products con todos los productos creados hasta ese momento.
+  
   getProducts() {
+    //Devolver el array products con todos los productos creados hasta ese momento.
     return this.products;
   }
 
-  //Validara el producto con el id.
+  productExiste(id){
+    //Verificar si el producto existe con un id
+
+    return this.products.find((producto) => producto.id === id);
+    
+  }
+
   getProductById(id) {
-    if (!this.products.find((producto) => producto.id === id)) {
-      console.log("not found");
-    } else {
-      console.log("si existe");
-    }
+    //Validacion
+    !this.productExiste(id) ? console.log("not found") : console.log(this.productExiste(id))
   }
 }
 
 const productos = new ProductManager();
+
+
 
 productos.addProduct("Bicicleta", "Scott doble suspension", 2500000, "No tiene", "abc", 520);
 productos.addProduct("Bicicleta", "Treck Rin 29", 1500000, "No tiene", "abc4", 20);
 productos.addProduct("Bicicleta", "Treck Rin 29", 1500000, "No tiene", "abcd", 20);
 productos.addProduct("Bicicleta", "Treck Rin 29", 1500000, "No tiene", "abcd", 20);
 
-
-console.log(productos.getProducts());
-
-productos.getProductById(5)
+productos.getProductById(2);
