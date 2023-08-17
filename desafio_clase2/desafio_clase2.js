@@ -58,18 +58,3 @@ class ProductManager {
       : console.log(this.productExiste(id));
   }
 }
-
-const productos = new ProductManager();
-
-
-
-
-productos.addProduct(
-  "Bicicleta",
-  "Scott doble suspension",
-  2500000,
-  "No tiene",
-  "abc",
-  520
-);
-
