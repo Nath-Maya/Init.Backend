@@ -17,6 +17,7 @@ class ProductManager {
       return;
     }
 
+    //Id incremental
     const idProducto = this.products.length + 1;
 
     const productNew = {
@@ -29,10 +30,12 @@ class ProductManager {
       stock,
     };
 
-    //Imprimir los valores todos los datos
+    //Extraer los valores de cada objeto que contiene un producto, verificar si hay undefined. 
     if (Object.values(productNew).includes(undefined)) {
       console.log("Todos los campos son requeridos");
     } else {
+      //Agregar el producto nuevo que cumple contodo al array de productos. 
+      
       return this.products.push(productNew);
     }
   }
@@ -58,7 +61,8 @@ class ProductManager {
 
 const productos = new ProductManager();
 
-console.log(productos.getProducts());
+
+
 
 productos.addProduct(
   "Bicicleta",
@@ -68,24 +72,4 @@ productos.addProduct(
   "abc",
   520
 );
-productos.addProduct(
-  "Bicicleta",
-  "Treck Rin 29",
-  1500000,
-  "No tiene",
-  "abcd",
-  20
-);
 
-console.log("Voy a agregar el otro elemento");
-//3er item agregado.
-
-productos.addProduct(
-  "Bicicleta",
-  "Treck Rin 29",
-  1500000,
-  "No tiene",
-  "abcd55",
-  20
-);
-console.log(productos.getProducts());
