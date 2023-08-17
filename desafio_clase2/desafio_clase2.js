@@ -19,7 +19,7 @@ class ProductManager {
 
     const idProducto = this.products.length + 1;
 
-   const  productNew = {
+    const productNew = {
       id: idProducto,
       title,
       description,
@@ -27,24 +27,15 @@ class ProductManager {
       thumbnail,
       code,
       stock,
-    }
+    };
 
     //Imprimir los valores todos los datos
-    if(Object.values(productNew).includes(undefined)) {
-     console.log("Not found");
-    return;
+    if (Object.values(productNew).includes(undefined)) {
+      console.log("Todos los campos son requeridos");
+    } else {
+      return this.products.push(productNew);
     }
-
-    this.products.push(productNew);
-    
-    }
-
-
-
-
-
-  
-  
+  }
 
   getProducts() {
     //Devolver el array products con todos los productos creados hasta ese momento.
@@ -60,7 +51,7 @@ class ProductManager {
   getProductById(id) {
     //Validacion
     !this.productExiste(id)
-      ? console.log("not found")
+      ? console.log("Not found")
       : console.log(this.productExiste(id));
   }
 }
@@ -86,14 +77,15 @@ productos.addProduct(
   20
 );
 
-
+console.log("Voy a agregar el otro elemento");
 //3er item agregado.
+
 productos.addProduct(
   "Bicicleta",
   "Treck Rin 29",
   1500000,
   "No tiene",
-  "abcd5"
+  "abcd55",
+  20
 );
-
 console.log(productos.getProducts());
