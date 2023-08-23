@@ -1,0 +1,1 @@
+"{\n  \"name\": \"clase_4\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"fileSystem.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n  },\n  \"keywords\": [],\n  \"author\": \"\",\n  \"license\": \"ISC\"\n}\n"
