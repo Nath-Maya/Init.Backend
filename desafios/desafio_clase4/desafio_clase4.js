@@ -10,13 +10,14 @@ class ProductManager {
   constructor() {
     //Crear la ruta del archivo
     this.path = "./productos.txt";
+    this.products = [];
   }
 
-  //Id incrementable
-  static id = 0;
+ 
+  addProduct = async (title, description, price, img, code, stock) => {
 
-  addProducto = async (title, description, price, img, code, stock) => {
-    ProductManager.id++;
+   //Id incrementable
+   const idProduct = this.products.length + 1;
 
     let productNew = {
       title,
@@ -25,17 +26,23 @@ class ProductManager {
       img,
       code,
       stock,
-      id: ProductManager.id,
+      id: idProduct,
     };
 
-    console.log("Producto creado" + productNew);
     console.log(productNew);
 
-    //Se envia el producto en formato JSON a la ruta.
-    await fs.writeFile(this.path, JSON.stringify(productNew));
+    //Agregar producto en el arreglo
+    this.products.push(productNew);
+
+    //Se envia el arreglo en formato JSON a la ruta.
+    await fs.writeFile(this.path, JSON.stringify(this.products));
   };
 }
 
 const productos = new ProductManager();
 
-productos.addProducto("titulo1", "descripcion", 4000, "imagen", "12345", 50);
+
+//Ingresando 2 productos
+productos.addProduct("titulo1", "descripcion", 4000, "imagen", "12345", 50);
+
+productos.addProduct("titulo2", "descripcion2", 7000, "imagen", "6789", 90);

@@ -1,1 +1,1 @@
-{"title":"titulo1","description":"descripcion","price":4000,"img":"imagen","code":"12345","stock":50,"id":1}
+[{"title":"titulo1","description":"descripcion","price":4000,"img":"imagen","code":"12345","stock":50,"id":1}]{"title":"titulo2","description":"descripcion2","price":7000,"img":"imagen","code":"6789","stock":90,"id":2}]
