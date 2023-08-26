@@ -16,23 +16,26 @@ class ProductManager {
   static id = 0;
 
   addProducto = async (title, description, price, img, code, stock) => {
-   let productNew = {
+    ProductManager.id++;
+
+    let productNew = {
       title,
       description,
       price,
       img,
       code,
-      stock
-   
-   };
+      stock,
+      id: ProductManager.id,
+    };
 
-   console.log("Producto creado" + productNew);
-   console.log(productNew);
+    console.log("Producto creado" + productNew);
+    console.log(productNew);
 
-    await fs.writeFile(this.path, "Hola");
+    //Se envia el producto en formato JSON a la ruta.
+    await fs.writeFile(this.path, JSON.stringify(productNew));
   };
 }
 
-const productos = new ProductManager
+const productos = new ProductManager();
 
-productos.addProducto('titulo1', 'descripcion', 4000, "imagen", '12345', 50);
+productos.addProducto("titulo1", "descripcion", 4000, "imagen", "12345", 50);

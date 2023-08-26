@@ -1,1 +1,1 @@
-Hola
+{"title":"titulo1","description":"descripcion","price":4000,"img":"imagen","code":"12345","stock":50,"id":1}
