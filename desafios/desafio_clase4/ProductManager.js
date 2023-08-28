@@ -56,6 +56,7 @@ class ProductManager {
       console.error("Not found");
     } else {
       console.log(answerGetId.find((product) => product.id === id));
+      console.log("Producto consultado con id: " + id)
     }
   };
 
@@ -64,22 +65,25 @@ class ProductManager {
   deleteProductId = async (id) => {
     let answerDelete = await this.readProducts();
     //Entregar un array de los productos diferentes al id seleccionado.
-    let filterProduct = answerDelete.filter(products => products.id != id);
+    let filterProduct = answerDelete.filter((products) => products.id != id);
 
-    console.log(filterProduct);
     await fs.writeFile(this.path, JSON.stringify(filterProduct));
+    console.log("Producto Eliminado");
+  };
+
+  updateProduct = async ({ id, ...producto }) => {
+    //Eliminar el producto antes de editarlo.
+    await this.deleteProductId(id);
+    //Arreglo de los productos que quedan.
+    let productStock = await this.readProducts();
+    //Arreglo donde se incluye el id modificado y los productos restantes.
+    let productModificado = [{ id, ...producto }, ...productStock];
+    //Se edita nuevamente el archivo que contiene la ruta path.
+    await fs.writeFile(this.path, JSON.stringify(productModificado));
+    console.log("actualizados: ")
+    console.log(productModificado);
   };
 }
 
 const productos = new ProductManager();
 
-//Ingresando 2 productos
-productos.addProduct("pruebq", "descripcion", 4000, "imagen", "12345", 50);
-
-productos.addProduct("titulo2", "descripcion2", 7000, "imagen", "6789", 90);
-
-// productos.getProducts()
-
-// productos.getProductById(3);
-
-productos.deleteProductId(2);
