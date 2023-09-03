@@ -5,7 +5,7 @@ const app = express();
 
 app.get('/consulta', (req, res) => {
    res.json({msg: "hola"})
-})
+});
 
 app.post('/api', (req, res) => {
    res.json({msg: "POST"})
