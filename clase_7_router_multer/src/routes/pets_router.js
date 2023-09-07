@@ -1,6 +1,4 @@
-
 import express from "express";
-
 const router = express.Router();
 
 //Arreglo para ingresar las mascotas
@@ -19,4 +17,4 @@ router.post("/pets", (req, res) => {
    res.json({message: "Mascota agregada"});
 });
 
-module.exports = router
+export default router
