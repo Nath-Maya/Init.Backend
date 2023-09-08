@@ -12,6 +12,7 @@ app.use(express.urlencoded({extended: true})); //Preparar mi entorno para recibi
 //!-----CONFIGURAR LOS ARCHIVOS ESTATICOS
 
 app.use(express.static(path.join(process.cwd(),'public')));
+//process.cwd cambia la ruta __dirname. 
 
 //!-----RUTAS
 
