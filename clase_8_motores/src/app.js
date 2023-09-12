@@ -1,28 +1,24 @@
-
 import express from "express";
-import handlebars from 'handlebars';
-
+import handlebars from 'express-handlebars';
 
 const app = express();
-const PORT = 8080;
+const PORT = 2000;
+app.use(express.static(process.cwd() + '/public'));
 
-app.engine("handlebars", handlebars.engine());
-
-app.set("views",process.cwd() + '/views');
-
+// Configura el motor de plantillas Handlebars
+app.engine('handlebars', handlebars.engine());
+app.set("views", process.cwd() + '/src/views');
 app.set("view engine", "handlebars");
 
-app.use(express.static(process.cwd() + '/public'))
 
 app.get("/", (req, res) => {
    let testUser = {
       name: "Daniel",
-      last_name: "diaz",
+      last_name: "Diaz",
+   };
    
-   }
-   res.render('index', testUser)
+   // Renderiza la plantilla "index" y proporciona los datos a través de un objeto
+   res.render('index', { user: testUser });
+});
 
-})
-
-
-app.listen(PORT, () => console.log(`servidor corriendo en el puerto ${PORT}`))
+app.listen(PORT, () => console.log(`Servidor corriendo en el puerto ${PORT}`));
