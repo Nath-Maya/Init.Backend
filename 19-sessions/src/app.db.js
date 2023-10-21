@@ -1,21 +1,24 @@
 import express from "express";
 import session from "express-session";
 import cookieParser from "cookie-parser";
-import FileStore from "session-file-store";
 import chalk from "chalk";
+import MongoStore from "connect-mongo";
 
-const fileStorage = FileStore(session); //Crear sessions en archivos.
 const app = express(); //Levanto servidor
 const PORT = 8080;
 app.use(cookieParser());
 
-//!SESSIONS :
+//!SESSIONS CON DATABASE:
 //Definir la ruta de las sessions, tiempo de caducidad de la session  e intentos del servidor para leer.
 
 app.use(
   session({
-    store: new fileStorage({ path: "./src/sessions", ttl: 100, retries: 0 }),
-    secret: "123456",
+    store: MongoStore.create({
+      mongoUrl:
+        "mongodb+srv://nathamayaramirez93:1234Maya@cluster0.am2h5td.mongodb.net/",
+      mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true }
+    }),
+    secret: "2509",
     resave: false,
     saveUninitialized: false,
   })
@@ -28,4 +31,6 @@ app.get("/", (req, res) => {
 
 app.listen(PORT, () =>
   console.log(chalk.bgCyan.black(`Server Up port: ${PORT}`))
-); 
+);
+
+
