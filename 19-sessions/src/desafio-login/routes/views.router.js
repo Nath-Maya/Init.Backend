@@ -15,4 +15,8 @@ router.get("/", (req, res) => {
   });
 });
 
+<<<<<<< HEAD
 export default router;
+=======
+export default router;
+>>>>>>> 582d8496433bb31670af15cd79ecc297bf6cdeaf
