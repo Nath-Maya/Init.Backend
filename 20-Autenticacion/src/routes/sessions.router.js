@@ -1,10 +1,12 @@
 import { Router } from "express";
 import userModel from "../models/Users.model.js";
+import { createHash } from "../utils.js";
 
 const router = Router();
 
 //!REGISTER USER
 router.post("/register", async (req, res) => {
+  /*
   //construccion del cuerpo del registro
   const { first_name, last_name, email, age, password } = req.body;
   //validacion e identificacion dentro del model creado.
@@ -24,6 +26,22 @@ router.post("/register", async (req, res) => {
     age,
     password,
   };
+*/
+
+  //construccion del cuerpo del registro
+  const { first_name, last_name, email, age, password } = req.body;
+  //Validar el ingreso de los datos
+  if(!first_name || !last_name || !email || !age) return res.status(400).send({status: "error", error: "Error user "})
+
+  //Creo el usuario, pero al password le digo que utilice el createHash
+  const user = {
+    first_name,
+    last_name,
+    email,
+    age,
+    password: createHash(password)
+  };
+
 
   //Pasamos el user al model por medio del create.
   let result = await userModel.create(user);
