@@ -12,7 +12,7 @@ import sessionRouter from "./routes/sessions.router.js";
 
 //!----------SERVER
 const app = express(); //Levanto servidor
-const PORT = 3001;
+const PORT = 3002;
 
 //!----------CONECCTION DATABASE
 const connection = mongoose.connect(
@@ -56,5 +56,5 @@ app.use("/", viewRouter);
 app.use("/api/sessions", sessionRouter);
 
 app.listen(PORT, () =>
-  console.log(chalk.bgCyanBright.black.bold(`SERVER UP : ${PORT}`))
+  console.log(chalk.bgCyanBright.black.bold(`SERVER UP CLASS AUTENTICATION : ${PORT}`))
 );
