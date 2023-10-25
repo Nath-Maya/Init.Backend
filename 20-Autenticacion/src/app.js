@@ -9,6 +9,7 @@ import chalk from "chalk";
 import __dirname from "./utils.js";
 import viewRouter from "./routes/views.router.js";
 import sessionRouter from "./routes/sessions.router.js";
+import initializedPassport from "./config/passport.config.js";
 
 //!----------SERVER
 const app = express(); //Levanto servidor
@@ -47,7 +48,12 @@ app.use(
   })
 );
 
-//!----------UP HANDLEBARS
+//!INIT PASSPORT - SESSION 
+initializedPassport();
+app.use(passport.initialize());
+app.use(passport.session());
+
+//!----------UP MILDDWARES
 app.engine("handlebars", handlebars.engine());
 app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
@@ -56,5 +62,7 @@ app.use("/", viewRouter);
 app.use("/api/sessions", sessionRouter);
 
 app.listen(PORT, () =>
-  console.log(chalk.bgCyanBright.black.bold(`SERVER UP CLASS AUTENTICATION : ${PORT}`))
+  console.log(
+    chalk.bgCyanBright.black.bold(`SERVER UP CLASS AUTENTICATION : ${PORT}`)
+  )
 );
