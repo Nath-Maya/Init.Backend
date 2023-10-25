@@ -1,4 +1,4 @@
-## 🔐 AUTENTICACION 
+## 🔐 AUTENTICACIÓN 
 
 - Aplicar el hash en las contraseñas y email para que no aparezcan en los datos de la base de datos. 
 
@@ -39,3 +39,6 @@ export const isValidPassword = (user, password) =>
 ### ✅ Resultado password con hash
 
 <img src="./public/img/passwordhash.jpg" alt="password sin hash" width="350">
+
+## 🔁 RESTAURACIÓN
+
