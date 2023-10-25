@@ -15,4 +15,8 @@ router.get("/", (req, res) => {
   });
 });
 
+router.get('/restartPassword',(req,res)=>{
+  res.render('restartPassword');
+})
+
 export default router;
