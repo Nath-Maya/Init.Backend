@@ -5,7 +5,10 @@ import { createHash, isValidPassword } from "../utils.js";
 const router = Router();
 
 //!REGISTER USER
+/* Esta parte se realizo para probar el hash
 router.post("/register", async (req, res) => {
+  
+
   //construccion del cuerpo del registro
   const { first_name, last_name, email, age, password } = req.body;
   //Validar el ingreso de los datos
@@ -24,7 +27,12 @@ router.post("/register", async (req, res) => {
   //Pasamos el user al model por medio del create.
   let result = await userModel.create(user);
   res.send({ status: "sucess", message: "User registered" });
+
+
+
 });
+
+  */
 
 //! LOGIN
 router.post("/login", async (req, res) => {
@@ -45,15 +53,36 @@ router.post("/login", async (req, res) => {
   res.send({ status: "success", payload: user });
 });
 
-router.post('/restartPassword',async(req,res)=>{
-  const {email,password} = req.body;
-  if(!email||!password) return res.status(400).send({status:"error",error:"Incomplete Values"});
-  const user = await userModel.findOne({email});
-  if(!user) return res.status(404).send({status:"error",error:"Not user found"});
+router.post("/restartPassword", async (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password)
+    return res
+      .status(400)
+      .send({ status: "error", error: "Incomplete Values" });
+  const user = await userModel.findOne({ email });
+  if (!user)
+    return res.status(404).send({ status: "error", error: "Not user found" });
   const newHashedPassword = createHash(password);
-  await userModel.updateOne({_id:user._id},{$set:{password:newHashedPassword}});
+  await userModel.updateOne(
+    { _id: user._id },
+    { $set: { password: newHashedPassword } }
+  );
 
-  res.send({status:"success",message:"Contraseña restaurada"});
-})
+  res.send({ status: "success", message: "Contraseña restaurada" });
+});
+
+//!ESTRATEGIA
+
+router.post(
+  "/register",
+  passport.authenticate("register", { failureRedirect: "/failregister" }),
+  async (req, res) => {
+    res.send({ status: "sucess", message: "User Register" });
+  }
+);
+
+router.get("failregiser", async (req, res) => {
+  res.send({ error: "failed" });
+});
 
 export default router;
