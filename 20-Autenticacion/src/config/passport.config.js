@@ -15,7 +15,7 @@ const initializedPassport = () => {
       async (req, username, password, done) => {
         //Validar como entramos a estos datos
 
-        const { first_name, last_name, email, age, password } = req.body;
+        const { first_name, last_name, email, age } = req.body;
         try {
           let user = await userModel.findOne({ email: username });
 
@@ -37,6 +37,16 @@ const initializedPassport = () => {
       }
     )
   );
+
+  //Se quita responsabilidades al router de validar datos. 
+  passport.serializeUser((user, done) => {
+    done(null, user.id);
+  });
+
+  passport.deserializeUser(async (id, done) => {
+    let user = await userModel.findById(id);
+    done(null, user);
+  });
 };
 
 export default initializedPassport;

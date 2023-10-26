@@ -10,6 +10,7 @@ import __dirname from "./utils.js";
 import viewRouter from "./routes/views.router.js";
 import sessionRouter from "./routes/sessions.router.js";
 import initializedPassport from "./config/passport.config.js";
+import passport from "passport";
 
 //!----------SERVER
 const app = express(); //Levanto servidor
