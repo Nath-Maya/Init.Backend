@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{!-- <link rel="stylesheet" href="/tailwind.css"> --}}
+
+    <title>Login</title>
+</head>
+<div class="container">
+        <div class="field">
+            <label class="label mt-6">Login</label>
+            <form action="/login" method="post" class="control has-icons-left has-icons-right">
+                <input class="input is-success mt-3" type="text" name="email" placeholder="email" >
+                <span class="icon is-small is-left">
+                    <i class="fas fa-user"></i>
+                </span>
+                <input class="input is-success mt-3" type="password" name="password" placeholder="Password" >
+                <button type="submit" class="button is-primary mt-3">Ingresar</button>
+            </form>
+            <button class="button is-primary mt-3" onclick="location.href='/github'">Autenticarse con GITHUB</button>
+            <h3>¿Aún no te has registrado?</h3>
+            <button class="button is-danger mt-3" onclick="location.href='/register'">Crea tu usuario aquí</button>
+            </div>
+        </div>
+</div>
+</html>
